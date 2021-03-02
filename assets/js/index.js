@@ -11,8 +11,9 @@ else{
 
 $.ajax({
   type: "GET",
-  url: "employee"
+  url: "Dashboard"
 }).done(function(data) {
+  console.log((data));
   // jsGrid Table
   $("#jsGrid").jsGrid({
     width: "100%",
@@ -59,10 +60,8 @@ $.ajax({
     controller: {
       loadData: function(filter) {
         return $.ajax({
-          type: "GET",
-          url: "employee",
-          dataType: "json",
-          contentType: "application/json"
+          url: "Dashboard/fillTable",
+          dataType: "json"
         });
       },
       insertItem: function(item) {
