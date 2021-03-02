@@ -1,16 +1,17 @@
 <?php
 
-class loginModel
+class loginModel extends Database
 {
   function __construct()
   {
-    echo "<br>login model";
-    $this->db = new Database();
-    $this->pdo = $this->db->connect();
+    parent::__construct();
+    // echo "<br>login model";
+    // $this->db = new Database();
+    $this->pdo = $this->connect();
   }
 
   function getUser(){
-    $data = $this->pdo->query("Select * FROM users")->fetchAll();
+    $data = $this->pdo->query("Select * FROM users")->fetchAll(PDO::FETCH_ASSOC);
     return $data;
   }
 
@@ -39,7 +40,7 @@ class loginModel
           $_SESSION['timer'] = 600;
           //redirect to dashboard
           //header("Location: ../../src/dashboard.php");
-          echo "logged in";
+          // echo "logged in";
           return 'login';
           //exit();
         }

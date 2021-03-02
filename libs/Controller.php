@@ -12,14 +12,14 @@ class Controller
   {
     $url = MODELS . $model . 'Model.php';
 
-    echo "module loaded";
+    // echo "module loaded";
 
     if (file_exists($url)) {
       require $url;
       $modelName = $model . 'Model';
       $this->model = new $modelName();
-      echo "<pre>";
-      echo $this->model->getUser()[0]['email'];
+      // echo "<pre>";
+      // echo $this->model->getUser()[0]['email'];
     } else {
       echo "Model not found";
     }

@@ -12,7 +12,6 @@ class App
     $url = $_SERVER['REQUEST_URI'] ? $_SERVER['REQUEST_URI'] : null;
     $url = rtrim($url, '/');
     $url = explode('/', $url);
-    var_dump($url);
     array_shift($url);
     var_dump($url);
 

@@ -8,4 +8,3 @@ require_once 'libs/App.php';
 require_once 'config/constants.php';
 
 $app = new App();
-

@@ -26,7 +26,7 @@ class Database
         PDO::ATTR_EMULATE_PREPARES => false
       ];
       $pdo = new PDO($connection, $this->username, $this->password, $options);
-      echo "Successfully connect to db";
+      // echo "Successfully connect to db";
       return $pdo;
 
     } catch(PDOException $e) {
