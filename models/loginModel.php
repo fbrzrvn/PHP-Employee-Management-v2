@@ -5,8 +5,6 @@ class loginModel extends Database
   function __construct()
   {
     parent::__construct();
-    // echo "<br>login model";
-    // $this->db = new Database();
     $this->pdo = $this->connect();
   }
 

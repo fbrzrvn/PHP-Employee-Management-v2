@@ -12,6 +12,8 @@ class login extends Controller
     $result = $this->model->getlogin();
     if($result == 'login'){
     echo "<br>log in";
+    //TODO call dashboard view
+    header("Location: " . URL . "Dashboard");
     }
     else{
     echo '<br> ERROR';
