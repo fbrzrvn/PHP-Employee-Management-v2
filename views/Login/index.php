@@ -19,22 +19,22 @@
 <body>
     <div class="card">
         <img src="assets/images/logoAssembler.png" class="card-img-top" alt="Responsive image">
-        <form action="src/library/loginController.php" method="POST" class="card-body needs-validation" novalidate>
-            <?php if(isset($_GET['logoutMsg']) && isset($_GET['logoutType'])) {
-                $alertType = $_GET['logoutType'];
-                $alertMsg = $_GET['logoutMsg'];
-                echo '<div class="alert '.$alertType.' alert-dismissible show">
-                <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>'.$alertMsg.'
-                </div>';
-            }; ?>
-            <div class="alert alert-danger alert-dismissible">
+        <form action="invoke" method="POST" class="card-body needs-validation" novalidate>
+            <?php //if(isset($_GET['logoutMsg']) && isset($_GET['logoutType'])) {
+                // $alertType = $_GET['logoutType'];
+                // $alertMsg = $_GET['logoutMsg'];
+                // echo '<div class="alert '.$alertType.' alert-dismissible show">
+                // <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
+                //     <span aria-hidden="true">&times;</span>
+                // </button>'.$alertMsg.'
+                // </div>';
+            //}; ?>
+            <!-- <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <strong>Error!</strong> Incorrect credentials.
-            </div>
+            </div> -->
             <div class="form-group row">
                 <input type="email" id="validationCustom01" name="emailInput" class="form-control" placeholder="Email address" require>
                 <!-- <div class="invalid-feedback">You have entered an invalid email</div> --> <!-- // Bootrat specific validation -->
@@ -44,7 +44,7 @@
                 <!-- <div class="invalid-feedback">You have entered an invalid password</div> --> <!-- // Bootrat specific validation -->
             </div>
             <div class="form-group row">
-                <button type="submit" class="btn btn-primary">Sign in</button>
+                <button type="submit" class="btn btn-primary" name="invoke">Sign in</button>
             </div>
         </form>
     </div>

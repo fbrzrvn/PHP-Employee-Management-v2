@@ -12,9 +12,11 @@ class App
     $url = $_SERVER['REQUEST_URI'] ? $_SERVER['REQUEST_URI'] : null;
     $url = rtrim($url, '/');
     $url = explode('/', $url);
+    var_dump($url);
     array_shift($url);
+    var_dump($url);
 
-    if (empty($url[0])) {
+    if(empty($url[0])) {
       $loginControllers = CONTROLLERS . 'Login.php';
       require_once $loginControllers;
       $controller = new Login();
@@ -34,7 +36,7 @@ class App
       }
 
     } else {
-      $controller = new Errors();
+      //$controller = new Errors();
     }
   }
 }

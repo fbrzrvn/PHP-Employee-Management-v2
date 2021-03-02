@@ -14,13 +14,14 @@ class Controller
 
     echo "module loaded";
 
-    // if (file_exists($url)) {
-    //   require $url;
-
-    //   $modelName = $model . 'Model';
-    //   $this->model = new $modelName();
-    // } else {
-    //   echo "Model not found";
-    // }
+    if (file_exists($url)) {
+      require $url;
+      $modelName = $model . 'Model';
+      $this->model = new $modelName();
+      echo "<pre>";
+      echo $this->model->getUser()[0]['email'];
+    } else {
+      echo "Model not found";
+    }
   }
 }
