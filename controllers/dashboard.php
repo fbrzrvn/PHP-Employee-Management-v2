@@ -8,9 +8,8 @@ class Dashboard extends Controller{
   }
 
   function fillTable(){
-    //echo "Working";
-    //var_dump($this->model->getAll());
     $result = $this->model->getAll();
+    echo "<pre>"; var_dump($result);
     return json_encode($result);
   }
 }
