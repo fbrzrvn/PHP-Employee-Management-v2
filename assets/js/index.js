@@ -61,7 +61,8 @@ $.ajax({
       loadData: function(filter) {
         return $.ajax({
           url: "Dashboard/fillTable",
-          dataType: "json"
+          data: "",
+          type: "GET"
         });
       },
       insertItem: function(item) {
