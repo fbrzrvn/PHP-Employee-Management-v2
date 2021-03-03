@@ -6,10 +6,11 @@ document.querySelector('a[href$="' + url + '"]').classList.add('active');
 $.ajax({
   type: "GET",
   url: "Dashboard",
-  'Content-Type': 'application/json'
+  data: "json"
 }).done(function(data) {
   console.log((data));
-  // jsGrid Table
+
+  // * jsGrid Table
   $("#jsGrid").jsGrid({
     width: "100%",
     height: "auto",
@@ -21,45 +22,29 @@ $.ajax({
     autoload: true,
     pageSize: 10,
     pageButtonCount: 3,
-    onItemInserting: function(args){
 
-    },
     onItemInserted: function(args) {
-      var fragment =
-      `<div class="alert alert-success alert-dismissible fade show">
-        <strong>New!</strong> Employee has been added to table.
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-      </div>`;
-      $('#message').append(fragment);
+      renderToastMsg("New", "Employee has been added to table", "success");
       setTimeout(function(){
         window.location.reload();
       }, 3000);
     },
-    onItemUpdated: function(args) {
-      var fragment =
-      `<div class="alert alert-info alert-dismissible fade show">
-      <strong>Update!</strong> An employee has been modified.
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-    </div>`;
-      $('#message').append(fragment);
-    },
+
     onItemDeleted: function(args) {
-      var fragment =
-      `<div class="alert alert-danger alert-dismissible fade show">
-      <strong>Delete!</strong> An employee has been deleted.
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-    </div>`;
-      $('#message').append(fragment);
+      renderToastMsg("Delete", "Employee has been deleted", "danger");
     },
+
     deleteConfirm: "Are you sure you want to delete this employee",
+
     controller: {
       loadData: function(filter) {
         return $.ajax({
           type: "GET",
           url: "Dashboard/fillTable",
-          data: "json"
+          data: filter
         });
       },
+
       insertItem: function(item) {
         return $.ajax({
           type: "POST",
@@ -67,6 +52,7 @@ $.ajax({
           data: item
         })
       },
+
       deleteItem: function(item) {
         return $.ajax({
             type: "DELETE",
@@ -74,6 +60,7 @@ $.ajax({
             data: item
         });
       },
+
       updateItem: function(item){
         return $.ajax({
             type: "PUT",
@@ -82,6 +69,7 @@ $.ajax({
         });
       }
     },
+
     fields: [
       { name: "id", type: "hidden", css: "hide", visbile: "false"},
       { name: "first_name", title: "First Name", type: "text", width: 100, validate: "required"},
@@ -111,8 +99,22 @@ $.ajax({
       },
       { type: "control" }
     ],
+
     rowClick: function(args){
       window.location.href = `../../src/library/employeeController.php?id=${args.item.id}`;
     }
   })
+
+  jsGrid.ControlField.prototype.editButtonClass = "hide";
+
+  function renderToastMsg(title, subtitle, type) {
+    var fragment =
+    `
+      <div class="alert alert-${type} alert-dismissible fade show">
+        <strong>${title}!</strong> ${subtitle}.
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>
+    `;
+    $('#message').append(fragment);
+  }
 });
