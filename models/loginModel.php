@@ -8,7 +8,8 @@ class loginModel extends Database
     $this->pdo = $this->connect();
   }
 
-  function getUser(){
+  function getUser()
+  {
     $data = $this->pdo->query("Select * FROM users")->fetchAll(PDO::FETCH_ASSOC);
     return $data;
   }
@@ -27,8 +28,9 @@ class loginModel extends Database
     //redirect to index with error
     else{
       $users = $this->getUser();
-      foreach($users as $user){//check for each user if email and password is a math
-        if($email== $user["email"] && $password == $user["password"]){
+      foreach($users as $user) {
+        //check for each user if email and password is a math
+        if ($email== $user["email"] && $password == $user["password"]) {
           //log in succesfull, create session
           session_start();
           var_dump($user);
@@ -37,12 +39,9 @@ class loginModel extends Database
           $_SESSION['loginTime'] = time();
           $_SESSION['timer'] = 600;
           //redirect to dashboard
-          //header("Location: ../../src/dashboard.php");
-          // echo "logged in";
           return 'login';
-          //exit();
-        }
-        else{ //if error sent back to index
+        } else {
+          //if error sent back to index
           echo "error";
           //header("Location: ../../index.php?error=wrongCredentias");
           exit();

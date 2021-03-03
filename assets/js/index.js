@@ -19,10 +19,10 @@ $.ajax({
     pageButtonCount: 3,
 
     onItemInserted: function(args) {
-      renderToastMsg("New", "Employee has been added to table", "success");
-      setTimeout(function(){
+      renderToastMsg("Create", "Employee has been added", "success");
+      setTimeout(function() {
         window.location.reload();
-      }, 3000);
+      }, 2000);
     },
 
     onItemDeleted: function(args) {
@@ -38,17 +38,19 @@ $.ajax({
           dataType: 'json'
         });
       },
+
       insertItem: function(item) {
         return $.ajax({
           type: "POST",
-          url: "../../src/library/employeeController.php",
+          url: "handleRequest",
           data: item
         })
       },
+
       deleteItem: function(item) {
         return $.ajax({
             type: "DELETE",
-            url: "../../src/library/employeeController.php",
+            url: 'handleRequest',
             data: item
         });
       },
@@ -90,5 +92,8 @@ $.ajax({
       </div>
     `;
     $('#message').append(fragment);
+    setTimeout(() => {
+      document.querySelector('#message').remove();
+    }, 2000);
   }
 });

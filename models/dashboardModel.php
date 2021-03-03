@@ -13,11 +13,29 @@ class dashboardModel extends Database
     return $data;
   }
 
-  function deleteEmployee($id)
+  function remove($emp_id)
   {
     try {
-      $data = $this->pdo->query("DELETE FROM employees_manager WHERE emp_id=$id")->fetch(PDO::FETCH_ASSOC);
-      return $data;
+      $sql = "DELETE FROM employees_manager WHERE emp_id = $emp_id";
+      $this->pdo->query($sql);
+
+    } catch (PDOException $e) {
+      print_r("Error: " . $e->getMessage());
+    }
+
+  }
+
+  function insert($data)
+  {
+    try {
+      $first_name = $data['first_name'];
+      $last_name = $data['last_name'];
+      $email = $data['email'];
+      $age = $data['age'];
+      $gender = $data['gender'];
+      $sql = "INSERT INTO employees_manager (first_name, last_name, email, age, gender)
+              VALUES ('$first_name', '$last_name', '$email', $age, '$gender')";
+      $this->pdo->query($sql);
 
     } catch (PDOException $e) {
       print_r("Error: " . $e->getMessage());

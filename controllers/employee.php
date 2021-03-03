@@ -1,5 +1,6 @@
 <?php
-class Employee extends Controller{
+class Employee extends Controller
+{
   function __construct()
   {
     parent::__construct();
