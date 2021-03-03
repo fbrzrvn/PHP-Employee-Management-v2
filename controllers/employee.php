@@ -5,15 +5,15 @@ class Employee extends Controller{
     parent::__construct();
   }
 
-  function render(){
+  function render()
+  {
     $this->view->render('Employee/index');
   }
 
-  function fillEmployee($id){
+  function renderEmployee($id)
+  {
     $result = $this->model->getEmployee($id);
     $this->view->result = $result;
     $this->view->render('Employee/index');
-    echo $result['first_name'];
-    //var_dump($result);
   }
 }

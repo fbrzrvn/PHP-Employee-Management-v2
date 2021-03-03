@@ -1,10 +1,9 @@
 // CHANGE ACTIVE PATH
-//const url = window.location.href?.split('/')[3];
-document.querySelector('a[href$="' + window.location.href + '"]').classList.add('active');
+document.querySelector('a[href$="' + window.location.href + '"]')?.classList.add('active');
 
 $.ajax({
   type: "GET",
-  url: "fillTable"
+  url: "renderTable"
 }).done(function(data) {
   // jsGrid Table
   $("#jsGrid").jsGrid({
@@ -35,7 +34,7 @@ $.ajax({
     controller: {
       loadData: function(filter) {
         return $.ajax({
-          url: "fillTable",
+          url: "renderTable",
           dataType: 'json'
         });
       },
@@ -53,31 +52,13 @@ $.ajax({
             data: item
         });
       },
-      updateItem: function(item){
-        return $.ajax({
-            type: "PUT",
-            url: "../../src/library/employeeController.php",
-            data: item
-        });
-      }
     },
 
     fields: [
       { name: "emp_id", type: "hidden", css: "hide", visbile: "false"},
       { name: "first_name", title: "First Name", type: "text", width: 100, validate: "required"},
       { name: "last_name", title: "Last Name", type: "text", width: 120, validate: "required" },
-      { name: "email", title: "Email", type: "text", width: 150,
-        validate: {
-          message: "Employee already exists",
-          validator: function(value) {
-            var x = 0;
-            data.forEach(element => {
-              if(element.email == value){
-                x = 1;
-              }
-            });
-            return (x == 1 ? "" : value);
-      }}},
+      { name: "email", title: "Email", type: "text", width: 150, validate: "required" },
       { name: "age", title: "Age", type: "text", width: 50,
         validate: value => { if (value > 0) return true; }
       },
@@ -93,7 +74,8 @@ $.ajax({
     ],
 
     rowClick: function(args){
-      window.location.href = `http://localhost:5000/Employee/fillEmployee/${args.item.emp_id}`;
+      const id = args.item.emp_id;
+      window.location.href = `http://localhost:5000/Employee/renderEmployee/${id}`;
     }
   })
 
@@ -110,4 +92,3 @@ $.ajax({
     $('#message').append(fragment);
   }
 });
-

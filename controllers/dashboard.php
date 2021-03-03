@@ -6,13 +6,13 @@ class Dashboard extends Controller{
     parent::__construct();
   }
 
-  function render(){
+  function render()
+  {
     $this->view->render('Dashboard/index');
   }
 
-  function fillTable(){
-    $result = json_encode($this->model->getAll());
-    echo $result;
-    //return $result;
+  function renderTable()
+  {
+    echo json_encode($this->model->getAll());
   }
 }
