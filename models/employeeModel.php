@@ -5,11 +5,10 @@ class employeeModel extends Database
   {
     parent::__construct();
     $this->pdo = $this->connect();
-    echo "employee model";
   }
 
-  function getAll(){
-    $data = $this->pdo->query("Select emp_id, first_name, last_name, email, gender, age FROM employees_manager")->fetchAll(PDO::FETCH_ASSOC);
+  function getEmployee($id){
+    $data = $this->pdo->query("Select * FROM employees_manager WHERE emp_id=$id")->fetch(PDO::FETCH_ASSOC);
     return $data;
   }
 }

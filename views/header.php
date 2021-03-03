@@ -26,7 +26,7 @@
               <a class="nav-link" aria-current="page" href="<?=constant('URL') . 'Dashboard/render';?>">Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="<?=constant('URL') . 'Employee';?>">Employee</a>
+              <a class="nav-link" aria-current="page" href="<?=constant('URL') . 'Employee/render';?>">Employee</a>
             </li>
           </ul>
           <form class="d-flex ml-auto" action="../src/library/loginController.php" method="post">

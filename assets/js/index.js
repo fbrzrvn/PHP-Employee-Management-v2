@@ -1,6 +1,6 @@
 // CHANGE ACTIVE PATH
-const url = window.location.href?.split('/')[3];
-document.querySelector('a[href$="' + 'http://localhost:5000/Dashboard/render' + '"]').classList.add('active');
+//const url = window.location.href?.split('/')[3];
+document.querySelector('a[href$="' + window.location.href + '"]').classList.add('active');
 
 $.ajax({
   type: "GET",
@@ -93,7 +93,7 @@ $.ajax({
     ],
 
     rowClick: function(args){
-      window.location.href = `../../src/library/employeeController.php?id=${args.item.id}`;
+      window.location.href = `http://localhost:5000/Employee/fillEmployee/${args.item.emp_id}`;
     }
   })
 

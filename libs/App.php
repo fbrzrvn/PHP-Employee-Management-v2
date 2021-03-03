@@ -30,9 +30,16 @@ class App
       $controller = new $url[0];
       $controller->loadModel($url[0]);
 
-      if (isset($url[1])) {
-        $controller->{ $url[1] }();
+      if (isset($url[1]) && method_exists($url[0], $url[1])) {
+        if(isset($url[2])){
+          $controller->{ $url[1] }($url[2]);
+        }else{
+          $controller->{ $url[1] }();
+        }
+      } else{
+        //load error
       }
+      //var_dump($url);
 
     } else {
       echo "Error en metodo";
