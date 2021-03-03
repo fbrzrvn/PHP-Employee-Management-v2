@@ -11,9 +11,8 @@ class login extends Controller
   // it call the getlogin() function of model class and store the return value of this function into the reslt variable.
     $result = $this->model->getlogin();
     if($result == 'login'){
-    echo "<br>log in";
     //TODO call dashboard view
-    header("Location: " . URL . "Dashboard");
+    header("Location: " . URL . "Dashboard/render");
     }
     else{
     echo '<br> ERROR';

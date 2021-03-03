@@ -5,7 +5,6 @@ class dashboardModel extends Database
   {
     parent::__construct();
     $this->pdo = $this->connect();
-    echo "dashboard model";
   }
 
   function getAll(){

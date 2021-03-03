@@ -1,17 +1,17 @@
 // CHANGE ACTIVE PATH
 const url = window.location.href.split('/');
 const subdomain = url[url.length-1];
-if(subdomain.length > 12){
-  const path = subdomain.split("?")[0];
-  document.querySelector('a[href$="' + path + '"]').classList.add('active');
-}
-else{
-  document.querySelector('a[href$="' + subdomain + '"]').classList.add('active');
-}
+// if(subdomain.length > 12){
+//   const path = subdomain.split("?")[0];
+//   document.querySelector('a[href$="' + path + '"]').classList.add('active');
+// }
+// else{
+//   document.querySelector('a[href$="' + subdomain + '"]').classList.add('active');
+// }
 
 $.ajax({
   type: "GET",
-  url: "Dashboard"
+  url: "fillTable"
 }).done(function(data) {
   console.log((data));
   // jsGrid Table
@@ -60,9 +60,8 @@ $.ajax({
     controller: {
       loadData: function(filter) {
         return $.ajax({
-          url: "Dashboard/fillTable",
-          data: "",
-          type: "GET"
+          url: "fillTable",
+          dataType: 'json'
         });
       },
       insertItem: function(item) {
@@ -88,9 +87,9 @@ $.ajax({
       }
     },
     fields: [
-      { name: "id", type: "hidden", css: "hide", visbile: "false"},
-      { name: "name", title: "First Name", type: "text", width: 100, validate: "required"},
-      { name: "lastName", title: "Last Name", type: "text", width: 120, validate: "required" },
+      { name: "emp_id", type: "hidden", css: "hide", visbile: "false"},
+      { name: "first_name", title: "First Name", type: "text", width: 100, validate: "required"},
+      { name: "last_name", title: "Last Name", type: "text", width: 120, validate: "required" },
       { name: "email", title: "Email", type: "text", width: 150, 
         validate: { 
           message: "Employee already exists",
@@ -109,8 +108,8 @@ $.ajax({
       { name: "gender", title: "Gender", type: "select", width: 70,
         items: [
           { Name: "", Id: '' },
-          { Name: "man", title: "Man", Id: 'man' },
-          { Name: "woman", title: "Woman", Id: 'woman' }
+          { Name: "male", title: "male", Id: 'male' },
+          { Name: "female", title: "female", Id: 'female' }
         ],
         valueField: "Id", textField: "Name", validate: "required"
       },

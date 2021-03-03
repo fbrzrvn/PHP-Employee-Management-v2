@@ -13,7 +13,7 @@ class App
     $url = rtrim($url, '/');
     $url = explode('/', $url);
     array_shift($url);
-    var_dump($url);
+    // var_dump($url);
 
     if(empty($url[0])) {
       $loginControllers = CONTROLLERS . 'Login.php';

@@ -4,7 +4,6 @@ class Controller
 {
   function __construct()
   {
-    echo "<p>Basic Controller</p>";
     $this->view = new View();
   }
 
