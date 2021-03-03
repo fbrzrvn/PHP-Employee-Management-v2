@@ -1,6 +1,6 @@
 // CHANGE ACTIVE PATH
 //const url = window.location.href?.split('/')[3];
-document.querySelector('a[href$="' + window.location.href + '"]').classList.add('active');
+//document.querySelector('a[href$="' + window.location.href + '"]').classList.add('active');
 
 $.ajax({
   type: "GET",
@@ -18,14 +18,17 @@ $.ajax({
     autoload: true,
     pageSize: 10,
     pageButtonCount: 3,
-
     onItemInserted: function(args) {
-      renderToastMsg("New", "Employee has been added to table", "success");
+      var fragment =
+      `<div class="alert alert-success alert-dismissible fade show">
+        <strong>New!</strong> Employee has been added to table.
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>`;
+      $('#message').append(fragment);
       setTimeout(function(){
         window.location.reload();
-      }, 3000);
+      }, 10);
     },
-
     onItemDeleted: function(args) {
       renderToastMsg("Delete", "Employee has been deleted", "danger");
     },
@@ -42,42 +45,24 @@ $.ajax({
       insertItem: function(item) {
         return $.ajax({
           type: "POST",
-          url: "../../src/library/employeeController.php",
+          url: "handleRequest",
           data: item
         })
       },
       deleteItem: function(item) {
         return $.ajax({
             type: "DELETE",
-            url: "../../src/library/employeeController.php",
+            url: 'handleRequest',
             data: item
         });
       },
-      updateItem: function(item){
-        return $.ajax({
-            type: "PUT",
-            url: "../../src/library/employeeController.php",
-            data: item
-        });
-      }
     },
 
     fields: [
       { name: "emp_id", type: "hidden", css: "hide", visbile: "false"},
       { name: "first_name", title: "First Name", type: "text", width: 100, validate: "required"},
       { name: "last_name", title: "Last Name", type: "text", width: 120, validate: "required" },
-      { name: "email", title: "Email", type: "text", width: 150,
-        validate: {
-          message: "Employee already exists",
-          validator: function(value) {
-            var x = 0;
-            data.forEach(element => {
-              if(element.email == value){
-                x = 1;
-              }
-            });
-            return (x == 1 ? "" : value);
-      }}},
+      { name: "email", title: "Email", type: "text", width: 150, validate: "required" },
       { name: "age", title: "Age", type: "text", width: 50,
         validate: value => { if (value > 0) return true; }
       },
