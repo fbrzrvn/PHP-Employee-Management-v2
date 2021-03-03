@@ -1,5 +1,8 @@
 // CHANGE ACTIVE PATH
-document.querySelector('a[href$="' + window.location.href + '"]')?.classList.add('active');
+const subdomain = window.location.href.split('/');
+subdomain.length === 6 ?
+  document.querySelector('a[href$="/Employee/render"]')?.classList.add('active') :
+  document.querySelector('a[href$="' + window.location.href + '"]')?.classList.add('active');
 
 $.ajax({
   type: "GET",
