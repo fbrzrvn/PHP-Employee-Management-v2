@@ -1,6 +1,6 @@
 // CHANGE ACTIVE PATH
 const url = window.location.href?.split('/')[3];
-document.querySelector('a[href$="' + url + '"]').classList.add('active');
+document.querySelector('a[href$="' + 'http://localhost:5000/Dashboard/render' + '"]').classList.add('active');
 
 $.ajax({
   type: "GET",
@@ -110,3 +110,4 @@ $.ajax({
     $('#message').append(fragment);
   }
 });
+

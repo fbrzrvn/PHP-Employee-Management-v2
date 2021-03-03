@@ -35,6 +35,7 @@ class App
       }
 
     } else {
+      echo "Error en metodo";
       //$controller = new Errors();
     }
   }
