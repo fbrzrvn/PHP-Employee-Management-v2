@@ -13,7 +13,6 @@ $.ajax({
   type: "GET",
   url: "fillTable"
 }).done(function(data) {
-  console.log((data));
   // jsGrid Table
   $("#jsGrid").jsGrid({
     width: "100%",
