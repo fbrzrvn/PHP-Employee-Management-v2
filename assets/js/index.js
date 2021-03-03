@@ -1,13 +1,6 @@
 // CHANGE ACTIVE PATH
-const url = window.location.href.split('/');
-const subdomain = url[url.length-1];
-// if(subdomain.length > 12){
-//   const path = subdomain.split("?")[0];
-//   document.querySelector('a[href$="' + path + '"]').classList.add('active');
-// }
-// else{
-//   document.querySelector('a[href$="' + subdomain + '"]').classList.add('active');
-// }
+const url = window.location.href?.split('/')[3];
+document.querySelector('a[href$="' + url + '"]').classList.add('active');
 
 $.ajax({
   type: "GET",
@@ -26,37 +19,20 @@ $.ajax({
     autoload: true,
     pageSize: 10,
     pageButtonCount: 3,
-    onItemInserting: function(args){
 
-    },
     onItemInserted: function(args) {
-      var fragment =
-      `<div class="alert alert-success alert-dismissible fade show">
-        <strong>New!</strong> Employee has been added to table.
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-      </div>`;
-      $('#message').append(fragment);
+      renderToastMsg("New", "Employee has been added to table", "success");
       setTimeout(function(){
         window.location.reload();
       }, 3000);
     },
-    onItemUpdated: function(args) {
-      var fragment =
-      `<div class="alert alert-info alert-dismissible fade show">
-      <strong>Update!</strong> An employee has been modified.
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-    </div>`;
-      $('#message').append(fragment);
-    },
+
     onItemDeleted: function(args) {
-      var fragment =
-      `<div class="alert alert-danger alert-dismissible fade show">
-      <strong>Delete!</strong> An employee has been deleted.
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-    </div>`;
-      $('#message').append(fragment);
+      renderToastMsg("Delete", "Employee has been deleted", "danger");
     },
+
     deleteConfirm: "Are you sure you want to delete this employee",
+
     controller: {
       loadData: function(filter) {
         return $.ajax({
@@ -86,12 +62,13 @@ $.ajax({
         });
       }
     },
+
     fields: [
       { name: "emp_id", type: "hidden", css: "hide", visbile: "false"},
       { name: "first_name", title: "First Name", type: "text", width: 100, validate: "required"},
       { name: "last_name", title: "Last Name", type: "text", width: 120, validate: "required" },
-      { name: "email", title: "Email", type: "text", width: 150, 
-        validate: { 
+      { name: "email", title: "Email", type: "text", width: 150,
+        validate: {
           message: "Employee already exists",
           validator: function(value) {
             var x = 0;
@@ -115,8 +92,22 @@ $.ajax({
       },
       { type: "control" }
     ],
+
     rowClick: function(args){
       window.location.href = `../../src/library/employeeController.php?id=${args.item.id}`;
     }
   })
+
+  jsGrid.ControlField.prototype.editButtonClass = "hide";
+
+  function renderToastMsg(title, subtitle, type) {
+    var fragment =
+    `
+      <div class="alert alert-${type} alert-dismissible fade show">
+        <strong>${title}!</strong> ${subtitle}.
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>
+    `;
+    $('#message').append(fragment);
+  }
 });
