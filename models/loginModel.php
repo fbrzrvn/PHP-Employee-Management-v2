@@ -20,20 +20,22 @@ class loginModel extends Database
     $email = $_POST['emailInput'];
     //get password user inserted
     $password = $_POST['passwordInput'];
-    if (empty($email) || empty($password)){
+
+    if (empty($email) || empty($password)) {
       return  "Empty Fields";
     }
     //redirect to index with error
-    else{
-      $users = $this->getUser();
-      foreach($users as $user) {
-        //check for each user if email and password is a math
-        if ($email== $user["email"] && $password == $user["password"]) {
-          return $user;
-        } else {
-          return "Wrong email or password";
-        }
+    $users = $this->getUser();
+    $isValidate = false;
+    foreach($users as $user) {
+      //check for each user if email and password is a math
+      if ($email == $user["email"] && $password == $user["password"]) {
+        $isValidate = true;
+        $loggedUser = $user;
+        // return "";
       }
+      var_dump($loggedUser);
     }
+    return $isValidate ? $loggedUser : "Wrong email or password";
   }
 }
