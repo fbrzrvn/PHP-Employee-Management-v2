@@ -1,5 +1,5 @@
 <section>
-  <form class="employee-form">
+  <form class="employee-form" action="handleRequest" method="POST">
     <!--first row-->
     <div class="form-row">
       <div class="col">
@@ -8,7 +8,10 @@
           type="text"
           class="form-control"
           placeholder="Name" id="employeeForm-name"
-          value= "<?= !isset($this->result['first_name']) ? "" : $this->result['first_name']?>">
+          name="first_name"
+          value= "<?= !isset($this->result['first_name']) ? "" : $this->result['first_name']?>"
+          required
+          >
       </div>
       <div class="col">
         <label for="employeeForm-lastname">Last Name</label>
@@ -17,7 +20,10 @@
           class="form-control"
           placeholder="Last name"
           id="employeeForm-lastname"
-          value= "<?= !isset($this->result['last_name']) ? "" : $this->result['last_name']?>">
+          name="last_name"
+          value= "<?= !isset($this->result['last_name']) ? "" : $this->result['last_name']?>"
+          required
+        >
       </div>
     </div>
     <!--second row-->
@@ -29,12 +35,15 @@
           class="form-control"
           placeholder="Email"
           id="employeeForm-email"
-          value= "<?= !isset($this->result['email']) ? "" : $this->result['email']?>">
+          name="email"
+          value= "<?= !isset($this->result['email']) ? "" : $this->result['email']?>"
+          required
+        >
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
       <div class="col">
         <label for="employeeForm-gender">Gender</label>
-        <select class="form-control" id="employeeForm-gender">
+        <select class="form-control" id="employeeForm-gender" name="gender">
           <option selected></option>
           <option value="male" <?=!isset($this->result['gender']) ? "" : ($this->result['gender'] == 'male' ? ' selected="selected"' : '');?>>Male</option>
           <option value="female" <?=!isset($this->result['gender']) ? "" : ($this->result['gender'] == 'female' ? ' selected="selected"' : '');?>>Female</option>
@@ -51,11 +60,22 @@
           class="form-control"
           placeholder="City"
           id="employeeForm-city"
-          value= "<?= !isset($this->result['city']) ? "" : $this->result['city']?>">
+          name="city"
+          value= "<?= !isset($this->result['city']) ? "" : $this->result['city']?>"
+          required
+        >
       </div>
       <div class="col">
         <label for="employeeForm-street">Street Address</label>
-        <input type="text" class="form-control" placeholder="Street Address" id="employeeForm-street" value= "<?= !isset($this->result['street_address']) ? "" : $this->result['street_address']?>">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Street Address"
+          id="employeeForm-street"
+          name="street_address"
+          value= "<?= !isset($this->result['street_address']) ? "" : $this->result['street_address']?>"
+          required
+        >
       </div>
     </div>
     <!--fourth row-->
@@ -67,20 +87,12 @@
           class="form-control"
           placeholder="State"
           id="employeeForm-state"
-          value= "<?= !isset($this->result['state']) ? "" : $this->result['state']?>">
+          name="state"
+          value= "<?= !isset($this->result['state']) ? "" : $this->result['state']?>"
+          maxlength="3"
+          required
+        >
       </div>
-      <div class="col">
-        <label for="employeeForm-age">Street Address</label>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Age"
-          id="employeeForm-age"
-          value= "<?= !isset($this->result['age']) ? "" : $this->result['age']?>">
-      </div>
-    </div>
-    <!--fifth row-->
-    <div class="form-row">
       <div class="col">
         <label for="employeeForm-postalcode">Postal Code</label>
         <input
@@ -88,8 +100,12 @@
           class="form-control"
           placeholder="Postal Code"
           id="employeeForm-postalcode"
+          name="postal_code"
           value= "<?= !isset($this->result['postal_code']) ? "" : $this->result['postal_code']?>">
       </div>
+    </div>
+    <!--fifth row-->
+    <div class="form-row">
       <div class="col">
         <label for="employeeForm-phone">Phone Number</label>
         <input
@@ -97,7 +113,20 @@
           class="form-control"
           placeholder="Phone Number"
           id="employeeForm-phone"
+          name="phone_number"
           value= "<?= !isset($this->result['phone_number']) ? "" : $this->result['phone_number']?>">
+      </div>
+      <div class="col">
+        <label for="employeeForm-age">Age</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Age"
+          id="employeeForm-age"
+          name="age"
+          value= "<?= !isset($this->result['age']) ? "" : $this->result['age']?>"
+          required
+        >
       </div>
     </div>
     <!--Buttons-->
