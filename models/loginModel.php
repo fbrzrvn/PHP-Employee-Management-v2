@@ -21,9 +21,7 @@ class loginModel extends Database
     //get password user inserted
     $password = $_POST['passwordInput'];
     if (empty($email) || empty($password)){
-      //TODO ERROR
-      echo "Error en login";
-      //exit();
+      return  "Empty Fields";
     }
     //redirect to index with error
     else{
@@ -33,10 +31,7 @@ class loginModel extends Database
         if ($email== $user["email"] && $password == $user["password"]) {
           return $user;
         } else {
-          //if error sent back to index
-          echo "error";
-          //header("Location: ../../index.php?error=wrongCredentias");
-          exit();
+          return "Wrong email or password";
         }
       }
     }

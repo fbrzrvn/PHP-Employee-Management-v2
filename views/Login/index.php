@@ -18,16 +18,15 @@
 <body>
     <div class="login-container">
         <h1 class="header-img">Log In</h1>
-        <form action="login/invoke" method="POST">
-            <?php //if(isset($_GET['logoutMsg']) && isset($_GET['logoutType'])) {
-                // $alertType = $_GET['logoutType'];
-                // $alertMsg = $_GET['logoutMsg'];
-                // echo '<div class="alert '.$alertType.' alert-dismissible show">
-                // <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
-                //     <span aria-hidden="true">&times;</span>
-                // </button>'.$alertMsg.'
-                // </div>';
-            //}; ?>
+        <form action="<?= !isset($this->error) ? "invoke" : "/Login/invoke" ?>" method="POST">
+            <?php if(isset($this->error)) {
+                $error = join(" ",explode("%20",$this->error));
+                echo '<div class="alert alert-danger alert-dismissible show">
+                <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>'.$error.'
+                </div>';
+            }; ?>
             <!-- <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
