@@ -39,4 +39,39 @@ class employeeModel extends Database
       print_r('Error: ' . $e->getMessage());
     }
   }
+
+  function update($employee)
+  {
+    try {
+      $emp_id = $employee['emp_id'];
+      $first_name = $employee['first_name'];
+      $last_name = $employee['last_name'];
+      $email = $employee['email'];
+      $gender = $employee['gender'];
+      $city = $employee['city'];
+      $street_address = $employee['street_address'];
+      $state = $employee['state'];
+      $postal_code = $employee['postal_code'];
+      $phone_number = $employee['phone_number'];
+      $age = $employee['age'];
+
+      $sql = "UPDATE employees_manager
+        SET
+          first_name = '$first_name',
+          last_name = '$last_name',
+          email = '$email',
+          gender = '$gender',
+          city = '$city',
+          street_address = '$street_address',
+          state = '$state',
+          postal_code = '$postal_code',
+          phone_number = '$phone_number',
+          age = '$age'
+        WHERE emp_id = '$emp_id'";
+      $this->pdo->query($sql);
+
+    } catch( PDOException $e) {
+      print_r('Error: ' . $e->getMessage());
+    }
+  }
 }

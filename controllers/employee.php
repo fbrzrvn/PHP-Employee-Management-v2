@@ -18,19 +18,17 @@ class Employee extends Controller
     $this->view->render('Employee/index');
   }
 
-  function handleRequest()
+  function createEmployee()
   {
-    switch($_SERVER["REQUEST_METHOD"]) {
+    parse_str(file_get_contents("php://input"), $_POST);
+    $this->model->insert($_POST);
+    header("Location: " . URL . "Dashboard/render");
+  }
 
-      case "POST":
-        parse_str(file_get_contents("php://input"), $_POST);
-        $this->model->insert($_POST);
-        break;
-
-      default:
-        break;
-    }
-
+  function updateEmployee()
+  {
+    parse_str(file_get_contents("php://input"), $_POST);
+    $this->model->update($_POST);
     header("Location: " . URL . "Dashboard/render");
   }
 }
