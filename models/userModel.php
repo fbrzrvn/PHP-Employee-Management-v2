@@ -10,15 +10,13 @@ class userModel extends Database
 
   function getAll()
   {
-    $data = $this->pdo->query("SELECT user_id, name, email FROM users")->fetchAll(PDO::FETCH_ASSOC);
-    return $data;
+    return $this->pdo->query("SELECT user_id, name, email FROM users")->fetchAll(PDO::FETCH_ASSOC);
   }
 
   function getUser($id)
   {
     try {
-      $data = $this->pdo->query("SELECT * FROM users WHERE user_id=$id")->fetch(PDO::FETCH_ASSOC);
-      return $data;
+      return $this->pdo->query("SELECT * FROM users WHERE user_id=$id")->fetch(PDO::FETCH_ASSOC);
 
     } catch (PDOException $e) {
       print_r("Error: " . $e->getMessage());
@@ -34,21 +32,35 @@ class userModel extends Database
     } catch (PDOException $e) {
       print_r("Error: " . $e->getMessage());
     }
-
   }
 
-  function insert($data)
+  function insert($user)
   {
     try {
-      $name = $data['name'];
-      $email = $data['email'];
-      $password = $data['password'];
+      $name = $user['name'];
+      $email = $user['email'];
+      $password = $user['password'];
       $sql = "INSERT INTO users (name, email, password)
               VALUES ('$name', '$email', '$password')";
       $this->pdo->query($sql);
 
     } catch (PDOException $e) {
       print_r("Error: " . $e->getMessage());
+    }
+  }
+
+  function update($user)
+  {
+    try {
+      $id = $user['user_id'];
+      $email = $user['email'];
+      $password = $user['password'];
+      $name = $user['name'];
+      $sql = "UPDATE users SET email = '$email', password = '$password', name ='$name' WHERE user_id=$id";
+      $this->pdo->query($sql);
+
+    } catch( PDOException $e) {
+      print_r('Error: ' . $e->getMessage());
     }
   }
 }

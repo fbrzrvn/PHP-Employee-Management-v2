@@ -10,7 +10,7 @@ $.ajax({
     filtering: true,
     inserting: true,
     sorting: true,
-    // editing: true,
+    editing: true,
     paging: true,
     autoload: true,
     pageSize: 10,
@@ -51,7 +51,7 @@ $.ajax({
             url: 'handleRequest',
             data: item
         });
-      },
+      }
     },
 
     fields: [
@@ -62,7 +62,7 @@ $.ajax({
       { type: "control" }
     ],
 
-    rowClick: function(args){
+    rowClick: function(args) {
       const id = args.item.user_id;
       window.location.href = `http://localhost:5000/User/renderUser/${id}`;
     }

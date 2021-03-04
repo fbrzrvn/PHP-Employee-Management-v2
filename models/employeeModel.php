@@ -10,8 +10,7 @@ class employeeModel extends Database
   function getEmployee($id)
   {
     try {
-      $data = $this->pdo->query("SELECT * FROM employees_manager WHERE emp_id=$id")->fetch(PDO::FETCH_ASSOC);
-      return $data;
+      return $this->pdo->query("SELECT * FROM employees_manager WHERE emp_id=$id")->fetch(PDO::FETCH_ASSOC);
 
     } catch (PDOException $e) {
       print_r("Error: " . $e->getMessage());

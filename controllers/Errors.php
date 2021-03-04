@@ -2,9 +2,11 @@
 
 class Errors extends Controller
 {
-  function __construct()
+  function __construct($error)
   {
+    $this->error = $error;
     parent::__construct();
-    $this->view->render('errors/index');
+    $this->view->error = $this->error;
+    $this->view->render('Errors/index');
   }
 }

@@ -3,6 +3,7 @@
 define('BASE_PATH', basename('/'));
 
 include './config/constants.php';
+require_once 'controllers/Errors.php';
 
 class App
 {
@@ -30,19 +31,16 @@ class App
       $controller->loadModel($url[0]);
 
       if (isset($url[1]) && method_exists($url[0], $url[1])) {
-        if(isset($url[2])){
+        if (isset($url[2])) {
           $controller->{ $url[1] }($url[2]);
-        }else{
+        } else {
           $controller->{ $url[1] }();
         }
-      } else{
-        //load error
+      } else {
+        $controller = new Errors("Unkow method");
       }
-      //var_dump($url);
-
     } else {
-      echo "Error en metodo";
-      //$controller = new Errors();
+      $controller = new Errors("404 Page was not found");
     }
   }
 }

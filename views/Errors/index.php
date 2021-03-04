@@ -1,6 +1,5 @@
 <?php require VIEWS . '/header.php'; ?>
 
-<div id="message"></div>
-<div id="jsGrid-user" class="jsGrid-table"></div>
+  <h2 class="error"><?= $this->error ?></h2>
 
 <?php require VIEWS . '/footer.php'; ?>

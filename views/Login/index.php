@@ -5,41 +5,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <!-- CSS -->
     <link rel="stylesheet" href="<?=constant('URL')?>assets/css/main.css">
     <title>Employee Management</title>
-
 </head>
 
 <body>
     <div class="login-container">
         <h1 class="header-img">Log In</h1>
         <form action="<?= !isset($this->error) ? "invoke" : "/Login/invoke" ?>" method="POST">
-            <?php if(isset($this->error)) {
+
+            <?php if (isset($this->error)) {
                 $error = join(" ",explode("%20",$this->error));
-                echo '<div class="alert alert-danger alert-dismissible show">
-                <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>'.$error.'
-                </div>';
-            }; ?>
-            <!-- <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <strong>Error!</strong> Incorrect credentials.
-            </div> -->
+                echo
+                    '<div class="alert alert-danger alert-dismissible show">
+                        <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>'.$error.'
+                    </div>';
+                };
+            ?>
+
             <div class="form-group row">
                 <input type="email" id="validationCustom01" name="emailInput" class="form-control" placeholder="Email address" require>
-                <!-- <div class="invalid-feedback">You have entered an invalid email</div> --> <!-- // Bootrat specific validation -->
             </div>
             <div class="form-group row">
                 <input type="password" id="validationCustom02" name="passwordInput" class="form-control" placeholder="Password" require>
-                <!-- <div class="invalid-feedback">You have entered an invalid password</div> --> <!-- // Bootrat specific validation -->
             </div>
             <div class="form-group row">
                 <button type="submit" class="btn btn-info" name="invoke">Sign in</button>

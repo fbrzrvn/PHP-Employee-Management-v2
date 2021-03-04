@@ -1,4 +1,4 @@
-<?php require VIEWS . '/header.php';?>
+<?php require VIEWS . '/header.php'; ?>
 
 <div id="message"></div>
 <div id="jsGrid" class="jsGrid-table"></div>

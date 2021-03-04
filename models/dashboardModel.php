@@ -9,8 +9,7 @@ class dashboardModel extends Database
 
   function getAll()
   {
-    $data = $this->pdo->query("Select emp_id, first_name, last_name, email, gender, age FROM employees_manager")->fetchAll(PDO::FETCH_ASSOC);
-    return $data;
+    return $this->pdo->query("Select emp_id, first_name, last_name, email, gender, age FROM employees_manager")->fetchAll(PDO::FETCH_ASSOC);
   }
 
   function remove($emp_id)
@@ -25,14 +24,14 @@ class dashboardModel extends Database
 
   }
 
-  function insert($data)
+  function insert($employee)
   {
     try {
-      $first_name = $data['first_name'];
-      $last_name = $data['last_name'];
-      $email = $data['email'];
-      $age = $data['age'];
-      $gender = $data['gender'];
+      $first_name = $employee['first_name'];
+      $last_name = $employee['last_name'];
+      $email = $employee['email'];
+      $age = $employee['age'];
+      $gender = $employee['gender'];
       $sql = "INSERT INTO employees_manager (first_name, last_name, email, age, gender)
               VALUES ('$first_name', '$last_name', '$email', $age, '$gender')";
       $this->pdo->query($sql);
