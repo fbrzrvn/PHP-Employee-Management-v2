@@ -4,7 +4,6 @@ class Controller
 {
   function __construct()
   {
-    echo "<p>Basic Controller</p>";
     $this->view = new View();
   }
 
@@ -12,15 +11,14 @@ class Controller
   {
     $url = MODELS . $model . 'Model.php';
 
-    echo "module loaded";
+    // echo "module loaded";
 
-    // if (file_exists($url)) {
-    //   require $url;
-
-    //   $modelName = $model . 'Model';
-    //   $this->model = new $modelName();
-    // } else {
-    //   echo "Model not found";
-    // }
+    if (file_exists($url)) {
+      require $url;
+      $modelName = $model . 'Model';
+      $this->model = new $modelName();
+    } else {
+      echo "Model not found";
+    }
   }
 }
