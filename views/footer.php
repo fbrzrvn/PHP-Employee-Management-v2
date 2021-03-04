@@ -17,5 +17,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
     <!-- JS -->
     <script src="<?=constant('URL')?>assets/js/index.js"></script>
+    <script src="<?=constant('URL')?>assets/js/user.js"></script>
   </body>
 </html>
