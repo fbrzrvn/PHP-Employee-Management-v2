@@ -31,15 +31,7 @@ class loginModel extends Database
       foreach($users as $user) {
         //check for each user if email and password is a math
         if ($email== $user["email"] && $password == $user["password"]) {
-          //log in succesfull, create session
-          session_start();
-          var_dump($user);
-          $_SESSION['userId'] = $user["user_id"];
-          $_SESSION['name'] = $user["name"];
-          $_SESSION['loginTime'] = time();
-          $_SESSION['timer'] = 600;
-          //redirect to dashboard
-          return 'login';
+          return $user;
         } else {
           //if error sent back to index
           echo "error";

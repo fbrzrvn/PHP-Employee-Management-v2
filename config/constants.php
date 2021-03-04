@@ -11,3 +11,6 @@ define("MODELS", BASE_PATH . 'models/');
 
 // URL
 define('URL', "http://localhost:5000/");
+
+//HELPERS
+define('HELPERS', BASE_PATH . 'helpers/');

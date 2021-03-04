@@ -18,7 +18,7 @@
 <body>
     <div class="login-container">
         <h1 class="header-img">Log In</h1>
-        <form action="login/invoke" method="POST" novalidate>
+        <form action="login/invoke" method="POST">
             <?php //if(isset($_GET['logoutMsg']) && isset($_GET['logoutType'])) {
                 // $alertType = $_GET['logoutType'];
                 // $alertMsg = $_GET['logoutMsg'];

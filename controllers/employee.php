@@ -4,6 +4,8 @@ class Employee extends Controller
   function __construct()
   {
     parent::__construct();
+    require HELPERS . 'session.php';
+    validateSession();
   }
 
   function render()

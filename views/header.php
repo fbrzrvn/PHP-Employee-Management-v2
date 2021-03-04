@@ -29,7 +29,7 @@
               <a class="nav-link" aria-current="page" href="<?=constant('URL') . 'Employee/render';?>">Employee</a>
             </li>
           </ul>
-          <form class="d-flex ml-auto" action="../src/library/loginController.php" method="post">
+          <form class="d-flex ml-auto" action="<?=constant('URL') . 'Login/logout';?>" method="post">
             <button class="btn btn-outline-info" type="submit" name="logout">Logout</button>
           </form>
         </div>
