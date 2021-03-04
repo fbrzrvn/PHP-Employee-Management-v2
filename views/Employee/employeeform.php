@@ -147,9 +147,9 @@
     <div class="buttons-container">
     <button
       type="submit"
-      class="btn btn-success"
+      class="btn btn-info"
       name="employeeSubmit"
-    ><?= !isset($this->result['emp_id']) ? "Create" : "Update" ?></button>
+    ><?= !isset($this->result['emp_id']) ? "Create" : "Confirm" ?></button>
     <a
       href="<?=constant('URL') . 'Dashboard/render';?>"
       class="btn btn-secondary"

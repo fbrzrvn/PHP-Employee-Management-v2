@@ -44,4 +44,11 @@ class User extends Controller
         break;
     }
   }
+
+  function updateUser()
+  {
+    parse_str(file_get_contents("php://input"), $_POST);
+    $this->model->update($_POST);
+    header("Location: " . URL . "User/render");
+  }
 }

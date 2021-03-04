@@ -10,15 +10,12 @@ class loginModel extends Database
 
   function getUser()
   {
-    $data = $this->pdo->query("Select * FROM users")->fetchAll(PDO::FETCH_ASSOC);
-    return $data;
+    return $this->pdo->query("Select * FROM users")->fetchAll(PDO::FETCH_ASSOC);
   }
 
   public function getlogin()
   {
-    //get email user inserted
     $email = $_POST['emailInput'];
-    //get password user inserted
     $password = $_POST['passwordInput'];
 
     if (empty($email) || empty($password)) {
@@ -32,9 +29,7 @@ class loginModel extends Database
       if ($email == $user["email"] && $password == $user["password"]) {
         $isValidate = true;
         $loggedUser = $user;
-        // return "";
       }
-      var_dump($loggedUser);
     }
     return $isValidate ? $loggedUser : "Wrong email or password";
   }

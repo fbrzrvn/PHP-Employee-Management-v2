@@ -25,9 +25,7 @@ class Database
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_EMULATE_PREPARES => false
       ];
-      $pdo = new PDO($connection, $this->username, $this->password, $options);
-      // echo "Successfully connect to db";
-      return $pdo;
+      return new PDO($connection, $this->username, $this->password, $options);
 
     } catch(PDOException $e) {
       print_r('Error Connection: ' . $e->getMessage());

@@ -1,10 +1,10 @@
-<?php require VIEWS . '/header.php';?>
+<?php require VIEWS . '/header.php'; ?>
 
 <form class="employee-form" action="/User/updateUser" method="POST">
     <input
       type="number"
       name="user_id"
-      value="<?= !isset($this->result['user_id']) ? "" : $this->result['user_id'] ?>"
+      value="<?= $this->result['user_id'] ?>"
       hidden
     >
     <!--first row-->
@@ -17,7 +17,7 @@
           placeholder="Name"
           id="name"
           name="name"
-          value="<?= !isset($this->result['name']) ? "" : $this->result['name'] ?>"
+          value="<?= $this->result['name'] ?>"
           required
           >
       </div>
@@ -29,7 +29,7 @@
           placeholder="Email"
           id="email"
           name="email"
-          value="<?= !isset($this->result['email']) ? "" : $this->result['email'] ?>"
+          value="<?= $this->result['email'] ?>"
           required
         >
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -45,7 +45,7 @@
           placeholder="Password"
           id="password"
           name="password"
-          value="<?= !isset($this->result['password']) ? "" : $this->result['password'] ?>"
+          value="<?= $this->result['password'] ?>"
           required
           >
       </div>
@@ -57,7 +57,7 @@
           placeholder="Confirm Password"
           id="confirm-password"
           name="confirm-password"
-          value="<?= !isset($this->result['password']) ? "" : $this->result['password'] ?>"
+          value="<?= $this->result['password'] ?>"
           required
           >
       </div>
@@ -66,9 +66,9 @@
     <div class="buttons-container">
     <button
       type="submit"
-      class="btn btn-success"
+      class="btn btn-info"
       name="userSubmit"
-    >Update</button>
+    >Confirm</button>
     <a
       href="<?=constant('URL') . 'User/render';?>"
       class="btn btn-secondary"
