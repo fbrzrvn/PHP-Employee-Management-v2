@@ -29,7 +29,7 @@
               <a class="nav-link" aria-current="page" href="<?=constant('URL') . 'Employee/render'; ?>">Employee</a>
             </li>
             <?php
-              if ($_SESSION['name'] == 'admin') {
+              if (isset($_SESSION['name']) && $_SESSION['name'] == 'admin') {
               echo '
                 <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="'. constant('URL') . 'User/render'. '">User</a>
