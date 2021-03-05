@@ -23,6 +23,10 @@ $.ajax({
       }, 2000);
     },
 
+    onItemUpdated: function(args) {
+      renderToastMsg("Update", "User has been updated", "info");
+    },
+
     onItemDeleted: function(args) {
       renderToastMsg("Delete", "User has been deleted", "danger");
     },
@@ -40,6 +44,14 @@ $.ajax({
       insertItem: function(item) {
         return $.ajax({
           type: "POST",
+          url: "handleRequest",
+          data: item
+        })
+      },
+
+      updateItem: function(item) {
+        return $.ajax({
+          type: "PUT",
           url: "handleRequest",
           data: item
         })
